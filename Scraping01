@@ -4,3 +4,40 @@ from selenium.webdriver.common.by import By
 import time
 import pandas as pd
 
+driver = webdriver.Chrome()
+
+driver.get('https://e-consultaruc.sunat.gob.pe/cl-ti-itmrconsruc/jcrS00Alias')
+
+#driver.maximize_window()
+
+time.sleep(3)
+
+driver.find_element('id','txtRuc').send_keys('20106897914')
+
+time.sleep(3)
+
+driver.find_element('id','btnAceptar').send_keys(Keys.ENTER)
+
+time.sleep(3)
+
+driver.find_element(By.CLASS_NAME,'btnInfRepLeg').send_keys(Keys.ENTER)
+
+time.sleep(3)
+
+website = pd.read_html(driver.page_source)
+
+df_repleg = website[0]
+df_repleg
+
+driver.find_element(By.XPATH,'/html/body/div/div[3]/button[1]').send_keys(Keys.ENTER)
+
+time.sleep(3)
+
+driver.find_element(By.CLASS_NAME,'btnInfNumTra').send_keys(Keys.ENTER)
+
+time.sleep(3)
+
+website = pd.read_html(driver.page_source)
+
+df_numtra = website[0]
+df_numtra
